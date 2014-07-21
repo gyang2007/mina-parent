@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<filters>
+		<!-- 用户自定义过滤器，可定义多个 -->
+		<filter>
+			<name>com.gy.mina.http.filter.TestFilter</name>
+		</filter>
+		<filter>
+			<name>com.gy.mina.http.filter.TestFilter2</name>
+		</filter>		
+	</filters>
+	
+	<urls>
+		<!-- 解析URL映射，可配置多个 -->
+		<!-- 根据配置的包路径，自动解析该包下所有符合条件的URL地址映射的类文件 -->
+		<mapping>
+			<!-- 包路径 -->
+			<package>com.gy.mina.http.controller</package>
+		</mapping>
+	</urls>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

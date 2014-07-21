@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_HOME" value="/home/gyang/develop/workspaces/logs/mina" /><!-- log目录 -->
+    <property name="LOG_TIME_HOME" value="${LOG_HOME}/time" />
+    <property name="LOG_EXCEPTION_HOME" value="${LOG_HOME}/exception" />
+    
+	<appender name="mina_log_time" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_TIME_HOME}/time_log.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOG_TIME_HOME}/time_log_%i.log.zip</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>4</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	<!-- <appender name="eflag_log_time" class="ch.qos.logback.core.ConsoleAppender"> -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!-- <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-28.28thread %-64.64logger{64} %X{medic.eventCode} %msg %ex%n</Pattern> -->
+			<Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %level [%thread] %logger{36} %X{medic.eventCode} %msg %ex%n</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="mina_log_exception" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_EXCEPTION_HOME}/exception_log.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOG_EXCEPTION_HOME}/exception_log_%i.log.zip</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>4</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-28.28thread %-64.64logger{64} %X{medic.eventCode} %msg %ex%n</Pattern>
+		</layout>
+	</appender>
+	
+	<logger additivity="false" name="mina.log">  
+        <appender-ref ref="mina_log_time" />
+    </logger>
+    
+    <logger additivity="false" name="mina.exception">  
+        <appender-ref ref="mina_log_exception" />
+    </logger>
+    
+    <!-- root节点至多一个 -->
+    <root level="INFO">
+         <appender-ref ref="mina_log_time" />
+    </root>
+</configuration>
